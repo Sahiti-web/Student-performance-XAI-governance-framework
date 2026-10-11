@@ -243,17 +243,33 @@ SVM had the highest raw recall (0.914), but its precision was only **0.231** and
 
 ### Step 6: What Outputs Were Saved?
 
-In the folder [`phase2_outputs/`](file:///c:/Users/tejas/Downloads/research%20student%20fairness%20evaluation/code/pbl-sem5-main/pbl-sem5-main/phase2_outputs):
+In the repository and outputs:
 
-1. **`experiment_results.csv`**: A spreadsheet with all 48 experiments, their hyperparameters, and all metrics.
-2. **`phase2_models.pkl`**: The **Best Random Forest** and **Best Decision Tree** saved alongside the test data and feature names, completely ready for Phase 3.
-3. **`all_trained_models.pkl`**: An archive of all 48 trained models.
+1. **`experiment_results.csv`**: Full benchmark table covering all 48 systematic experiments and metrics.
+2. **`best_model_per_algorithm.csv` & `top_10_models.csv`**: Ranked model leaderboards.
+3. **`phase3_bundle.pkl`**: Champion Random Forest predictor bundle (`model`, `feature_names`, `X_test`, `y_test`) prepared for Phase 3 XAI interpretability.
+4. **Visual Analytics**: `01_model_comparison.png`, `02_confusion_matrices.png`, `03_roc_curves.png`, `04_balancing_strategy_impact.png`, `05_top_features_importance.png`, and `phase2_dashboard.html`.
+
+---
+
+# Part 4: Systematic Repository Branching Architecture
+
+To maintain institutional reproducibility, clean separation of concerns, and clear progress tracking, this repository is organized into hierarchical research phase branches:
+
+| Branch | Phase / Domain | Status | Key Deliverables & Focus |
+| :--- | :--- | :---: | :--- |
+| **`main`** | Production Trunk | **Active** | Production mainline containing consolidated pipeline, research papers, configuration, and documentation. |
+| **`phase-1/data-prep`** | Phase 1: Data Preparation | **Complete** | Data ingestion (`dataset_evasao_MDE.xlsx`), 1.5×IQR winsorization, binary target definition, encoding, stratified split, and bilingual English translation. |
+| **`phase-2/model-training`** | Phase 2: Model Benchmarking | **Complete** | 48 systematic ML experiments (4 balancing × 3 feature selection × 4 ML models), hyperparameter tuning, model ranking, visual charts, dashboard, and Phase 3 export bundle. |
+| **`phase-3/explainable-ai`** | Phase 3: Explainable AI (XAI) | **Ready** | Local & global explainability using SHAP (TreeExplainer, beeswarm, waterfall) and LIME on champion models via `phase3_bundle.pkl`. |
+| **`phase-4/fairness-governance`**| Phase 4: Fairness & Governance | **Ready** | Algorithmic fairness auditing across protected attributes (gender, race, income), Disparate Impact, Demographic Parity, Equal Opportunity, and AI Governance policies. |
+| `phase2output` | Legacy Output Branch | Archived | Preserved historical Phase 2 artifacts snapshot. |
 
 ---
 
 ### 🚀 What Happens Next? (Phase 3 & Phase 4)
 
 * **Phase 3 (Explainable AI — XAI)**:
-  We take the Best Random Forest and Best Decision Tree and apply **SHAP** and **LIME**. This will generate visual plots showing *exactly* why each student was flagged (e.g. *"Student #104 has an 82% dropout risk because their IRA is 3.8 and attendance is below 70%"*).
+  We take the Best Random Forest and Best Decision Tree from `phase3_bundle.pkl` and apply **SHAP** and **LIME**. This generates visual plots showing *exactly* why each student was flagged (e.g. *"Student #104 has an 82% dropout risk because their IRA is 3.8 and attendance is below 70%"*).
 * **Phase 4 (Fairness & Governance Audit)**:
-  We check whether the models treat male vs. female students or white vs. minority students fairly, audit Disparate Impact, and build a governance policy for ethical use in schools.
+  We verify whether the models treat male vs. female students or white vs. minority students fairly, audit Disparate Impact, and build a governance policy for ethical use in schools.
