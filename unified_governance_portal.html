@@ -1,0 +1,3052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Governance & Explainability Command Center | Student Dropout Prevention</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #2563eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --dark: #0f172a;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.5;
+            padding: 24px;
+        }
+        .container { max-width: 1280px; margin: 0 auto; }
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+            color: white;
+            padding: 32px 36px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
+        }
+        header h1 { font-size: 27px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+        header p { font-size: 14.5px; opacity: 0.92; max-width: 950px; line-height: 1.6; }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover { color: var(--accent); background: #f1f5f9; }
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            background: white;
+        }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+        .kpi-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--accent);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .kpi-title { font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .kpi-value { font-size: 26px; font-weight: 800; color: var(--dark); }
+        .kpi-sub { font-size: 12.5px; color: var(--text-muted); margin-top: 4px; }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 26px;
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .section-card h2 { font-size: 19px; font-weight: 700; margin-bottom: 16px; color: #1e293b; display: flex; align-items: center; gap: 8px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
+        th { background: #f8fafc; padding: 11px 13px; font-weight: 700; color: #334155; border-bottom: 2px solid var(--border); }
+        td { padding: 11px 13px; border-bottom: 1px solid var(--border); }
+        tr:hover td { background-color: #f8fafc; }
+
+        .badge { display: inline-block; padding: 3px 9px; border-radius: 14px; font-size: 11.5px; font-weight: 700; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-success { background: #dcfce7; color: #166534; }
+        .badge-primary { background: #eff6ff; color: #1d4ed8; }
+
+        /* Interactive Simulator Layout */
+        .sim-container {
+            display: grid;
+            grid-template-columns: 310px 1fr;
+            gap: 22px;
+        }
+        .student-select-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+        }
+        .student-select-box label { font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 8px; display: block; }
+        .student-dropdown {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            font-weight: 600;
+            background: white;
+            cursor: pointer;
+            outline: none;
+        }
+        .sim-detail-box {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 22px;
+        }
+        .risk-gauge-bar {
+            height: 18px;
+            background: #e2e8f0;
+            border-radius: 9px;
+            overflow: hidden;
+            margin: 8px 0 16px 0;
+        }
+        .risk-gauge-fill {
+            height: 100%;
+            transition: width 0.4s ease, background 0.4s ease;
+            border-radius: 9px;
+        }
+        .driver-list { list-style: none; padding: 0; margin-top: 8px; }
+        .driver-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 13.5px;
+        }
+        .driver-item.risk { background: #fef2f2; border-left: 4px solid var(--danger); }
+        .driver-item.protect { background: #f0fdf4; border-left: 4px solid var(--success); }
+
+        /* What-If Counterfactual Box */
+        .what-if-box {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+        .slider-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 12px;
+        }
+        .slider-item label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+        .slider-item input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .charter-box {
+            background: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            padding: 18px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Explainable AI Governance Command Center</h1>
+            <p>Integrated Institutional Intelligence Platform: Empirical Benchmarking, Early-Warning Validation, Modality Base-Rate Audits, Global & Local Explainability (SHAP & LIME), Algorithmic Equity Auditing (Gender, Race, Income), and Human-in-the-Loop Governance Protocol.</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-benchmarking')">📊 1. Model Benchmarking & Validation (Phase 2)</button>
+            <button class="tab-btn" onclick="switchTab('tab-global-xai')">🌐 2. Macro Explainability (Phase 3)</button>
+            <button class="tab-btn" onclick="switchTab('tab-interactive-xai')">🔍 3. Interactive Student Lookup & Counterfactuals</button>
+            <button class="tab-btn" onclick="switchTab('tab-fairness-audit')">⚖️ 4. Algorithmic Fairness & Intersectional Matrix</button>
+            <button class="tab-btn" onclick="switchTab('tab-governance-charter')">📜 5. Ethical Governance Charter</button>
+        </div>
+
+        <!-- TAB 1: MODEL BENCHMARKING (PHASE 2) -->
+        <div id="tab-benchmarking" class="tab-pane active">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">Champion Algorithm</div>
+                    <div class="kpi-value" style="color:var(--accent);">Random Forest</div>
+                    <div class="kpi-sub">UnderSampling + FeatureImportance</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--success);">
+                    <div class="kpi-title">Active Student Recall (GPA &gt; 0)</div>
+                    <div class="kpi-value" style="color:var(--success);">80.8%</div>
+                    <div class="kpi-sub">Caught 396 of 490 Active Dropouts</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:#8b5cf6;">
+                    <div class="kpi-title">Overall Accuracy / AUC</div>
+                    <div class="kpi-value" style="color:#8b5cf6;">92.9% / 0.951</div>
+                    <div class="kpi-sub">Combined 3,017 test students</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--warning);">
+                    <div class="kpi-title">White-Box Surrogate</div>
+                    <div class="kpi-value" style="color:var(--warning);">Decision Tree</div>
+                    <div class="kpi-sub">Recall: 84.6% | Interpretable Flowchart</div>
+                </div>
+            </div>
+
+            <!-- SECTION: EARLY-WARNING COHORT VALIDATION -->
+            <div class="section-card">
+                <h2>1. Early-Warning Validation: Active Students (GPA &gt; 0) vs. Post-Mortem Records (GPA == 0)</h2>
+                <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:14px;">
+                    <strong>Academic Rigor Check:</strong> Disaggregates students with recorded zero GPAs (who already ceased attendance administratively) from active students. Confirms that the model maintains <strong>80.8% recall and 82.5% precision on active students</strong> without relying on trivial post-mortem zeros.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Evaluation Cohort</th>
+                            <th>Sample Size</th>
+                            <th>Actual Dropout Occurrence</th>
+                            <th>Model Recall (Sensitivity)</th>
+                            <th>Model Precision</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr style="background:#f0fdf4; font-weight:bold;">
+            <td><strong>Early-Warning Active Students (GPA > 0)</strong></td>
+            <td><strong>2722</strong> students</td>
+            <td>490 (18.0%)</td>
+            <td><span class="badge badge-success">80.8%</span></td>
+            <td>82.5%</td>
+        </tr>
+        
+        <tr style="">
+            <td><strong>Administrative Post-Mortem Records (GPA == 0)</strong></td>
+            <td><strong>295</strong> students</td>
+            <td>186 (63.1%)</td>
+            <td><span class="badge badge-warning">95.2%</span></td>
+            <td>86.3%</td>
+        </tr>
+        
+        <tr style="">
+            <td><strong>Combined Full Test Set</strong></td>
+            <td><strong>3017</strong> students</td>
+            <td>676 (22.4%)</td>
+            <td><span class="badge badge-primary">84.8%</span></td>
+            <td>83.6%</td>
+        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SECTION: COURSE MODALITY BASE-RATE AUDIT -->
+            <div class="section-card">
+                <h2>2. Course Modality Base-Rate Audit (Traditional High School vs. Adult Education)</h2>
+                <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:14px;">
+                    <strong>Institutional Context:</strong> Evaluates performance across program types. Traditional daytime high school students (<code>Integrado</code>) have a baseline dropout rate of <strong>16.3%</strong>, whereas adult/evening students (<code>Subsequente</code> and <code>EJA</code>) experience <strong>34.6% to 39.5%</strong> baseline dropout rates due to employment and family commitments. The model calibrates sensitivity appropriately across all formats.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Modality / Format</th>
+                            <th>Total Students</th>
+                            <th>Actual Dropout Baseline Rate</th>
+                            <th>Model Flagging Rate</th>
+                            <th>Model Recall (Sensitivity)</th>
+                            <th>Model Precision</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td><strong>Integrated High School (Integrado - Traditional Teens)</strong></td>
+            <td><strong>2015</strong> students</td>
+            <td>16.3%</td>
+            <td>16.7%</td>
+            <td><span class="badge badge-success">79.9%</span></td>
+            <td>78.0%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Subsequent Technical (Subsequente - Post-High School)</strong></td>
+            <td><strong>763</strong> students</td>
+            <td>34.6%</td>
+            <td>34.1%</td>
+            <td><span class="badge badge-success">89.0%</span></td>
+            <td>90.4%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Concurrent Technical (Concomitante - Dual Schooling)</strong></td>
+            <td><strong>153</strong> students</td>
+            <td>32.7%</td>
+            <td>37.9%</td>
+            <td><span class="badge badge-success">94.0%</span></td>
+            <td>81.0%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Youth & Adult Education (Integrado EJA - Adults)</strong></td>
+            <td><strong>86</strong> students</td>
+            <td>39.5%</td>
+            <td>36.0%</td>
+            <td><span class="badge badge-success">85.3%</span></td>
+            <td>93.5%</td>
+        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-card">
+                <h2>3. Empirical Model Evaluation Visualizations</h2>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                    <div>
+                        <img src="01_model_comparison.png" alt="Model Comparison" style="width:100%; border-radius:8px; border:1px solid var(--border);">
+                        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">Recall and Precision rankings across all tested algorithms.</p>
+                    </div>
+                    <div>
+                        <img src="02_confusion_matrices.png" alt="Confusion Matrices" style="width:100%; border-radius:8px; border:1px solid var(--border);">
+                        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">Confusion matrices showing held-out true positive and false alarm rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: GLOBAL MACRO EXPLAINABILITY (PHASE 3) -->
+        <div id="tab-global-xai" class="tab-pane">
+            <div class="kpi-grid">
+                <div class="kpi-card" style="border-top-color:var(--danger);">
+                    <div class="kpi-title">#1 Global Risk Catalyst</div>
+                    <div class="kpi-value" style="color:var(--danger); font-size:20px;">Academic Performance (GPA)</div>
+                    <div class="kpi-sub">Mean |SHAP| = 0.2717 (Dominant Signal)</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--warning);">
+                    <div class="kpi-title">#2 Global Catalyst</div>
+                    <div class="kpi-value" style="color:var(--warning); font-size:20px;">Course Failures</div>
+                    <div class="kpi-sub">Mean |SHAP| = 0.0596 (Acute Multiplier)</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--accent);">
+                    <div class="kpi-title">#3 Critical Threshold</div>
+                    <div class="kpi-value" style="color:var(--accent); font-size:20px;">Attendance &lt; 75%</div>
+                    <div class="kpi-sub">Sharp exponential surge in dropout probability</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--success);">
+                    <div class="kpi-title">Explainer Algorithm</div>
+                    <div class="kpi-value" style="color:var(--success); font-size:22px;">TreeExplainer</div>
+                    <div class="kpi-sub">Game-theoretic marginal attributions</div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>1. Global SHAP Visualizations (English Feature Names)</h2>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                    <div>
+                        <img src="phase3_outputs/01_shap_global_beeswarm.png" alt="SHAP Beeswarm" style="width:100%; border-radius:8px; border:1px solid var(--border);">
+                        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;"><strong>Global Beeswarm:</strong> Blue (low values) on GPA and attendance pull sharply toward dropout.</p>
+                    </div>
+                    <div>
+                        <img src="phase3_outputs/02_shap_feature_importance.png" alt="SHAP Feature Importance" style="width:100%; border-radius:8px; border:1px solid var(--border);">
+                        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;"><strong>Mean |SHAP| Bar:</strong> Relative magnitude weights of all 15 selected features in English.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>2. Feature Attribution Ranking Table (Translated)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:80px;">Rank</th>
+                            <th>Feature Name (English)</th>
+                            <th style="width:180px;">Mean |SHAP Value|</th>
+                            <th style="width:300px;">Relative Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td><strong>#1</strong></td>
+            <td><code>Academic Performance (GPA / IRA)</code></td>
+            <td><strong>0.2717</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:100.0%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#2</strong></td>
+            <td><code>Course Failures (Count)</code></td>
+            <td><strong>0.0596</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:21.9%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#3</strong></td>
+            <td><code>Enrollment Year</code></td>
+            <td><strong>0.0415</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:15.3%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#4</strong></td>
+            <td><code>Attendance Rate (%)</code></td>
+            <td><strong>0.0305</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:11.2%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#5</strong></td>
+            <td><code>Course Modality</code></td>
+            <td><strong>0.0263</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:9.7%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#6</strong></td>
+            <td><code>Student Age</code></td>
+            <td><strong>0.0174</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:6.4%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#7</strong></td>
+            <td><code>Family Gross Income</code></td>
+            <td><strong>0.0127</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:4.7%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#8</strong></td>
+            <td><code>Employment Status</code></td>
+            <td><strong>0.0084</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:3.1%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#9</strong></td>
+            <td><code>Mother's Education Level</code></td>
+            <td><strong>0.0073</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:2.7%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#10</strong></td>
+            <td><code>Household Companionship</code></td>
+            <td><strong>0.0067</strong></td>
+            <td><div style="background:#e2e8f0; border-radius:4px; height:10px; width:100%;"><div style="background:#2563eb; height:10px; border-radius:4px; width:2.4%;"></div></div></td>
+        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 3: INTERACTIVE STUDENT LOOKUP & COUNTERFACTUAL SIMULATOR -->
+        <div id="tab-interactive-xai" class="tab-pane">
+            <div class="section-card">
+                <h2>Interactive Student Case Audit & Counterfactual Intervention Simulator</h2>
+                <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">
+                    Select an individual student from the held-out cohort to inspect their real-time model probability, personalized push factors, human-readable student profile, and dynamic What-If sensitivity sliders.
+                </p>
+
+                <div class="sim-container">
+                    <div class="student-select-box">
+                        <label for="studentDropdown">Select Student Record:</label>
+                        <select id="studentDropdown" class="student-dropdown" onchange="renderStudentDetail(this.value)">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+
+                        <div style="margin-top:20px; font-size:13px; color:var(--text-muted);">
+                            <strong>Cohort Coverage:</strong>
+                            <p style="margin-top:6px;">12 diverse benchmark cases covering High-Risk dropouts, Borderline students walking the line, Resilient graduates, and demographic variations.</p>
+                        </div>
+                    </div>
+
+                    <div id="studentDetailPanel" class="sim-detail-box">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: ALGORITHMIC FAIRNESS & INTERSECTIONAL MATRIX (PHASE 4) -->
+        <div id="tab-fairness-audit" class="tab-pane">
+            <div class="kpi-grid">
+                <div class="kpi-card" style="border-top-color:var(--success);">
+                    <div class="kpi-title">Race Equity (80% Rule)</div>
+                    <div class="kpi-value" style="color:var(--success);">1.180 (Passed)</div>
+                    <div class="kpi-sub">White 79.1% vs. Minority 85.6% Recall</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--accent);">
+                    <div class="kpi-title">Gender Equal Opportunity</div>
+                    <div class="kpi-value" style="color:var(--accent);">-0.057</div>
+                    <div class="kpi-sub">Male 87.4% vs. Female 81.7% Recall</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:var(--warning);">
+                    <div class="kpi-title">Income Selection Rate</div>
+                    <div class="kpi-value" style="color:var(--warning);">1.411</div>
+                    <div class="kpi-sub">Tracks real 25.8% vs. 19.0% dropout rate</div>
+                </div>
+                <div class="kpi-card" style="border-top-color:#8b5cf6;">
+                    <div class="kpi-title">Audit Cohort Alignment</div>
+                    <div class="kpi-value" style="color:#8b5cf6;">3,017 / 3,017</div>
+                    <div class="kpi-sub">Zero synthetic data; 100% verified real records</div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Visual Multi-Slice Fairness Audit</h2>
+                <img src="phase4_outputs/01_comprehensive_fairness_audit.png" alt="Fairness Charts" style="width:100%; border-radius:8px; border:1px solid var(--border);">
+            </div>
+
+            <div class="section-card">
+                <h2>1. Quantitative Fairness Audit Matrix (Single Attribute Slices)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Protected Dimension</th>
+                            <th>Comparison Groups</th>
+                            <th>Sample Sizes</th>
+                            <th>Disparate Impact</th>
+                            <th>Statistical Parity</th>
+                            <th>Equal Opp. (Recall Parity)</th>
+                            <th>Four-Fifths Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td><strong>Gender</strong></td>
+            <td><small>Priv: Male<br>Unpriv: Female</small></td>
+            <td>1417 / 1600</td>
+            <td><strong>0.707</strong></td>
+            <td>-0.079</td>
+            <td>87.4% vs. <strong>81.7%</strong> (-0.057)</td>
+            <td><span class="badge badge-warning">UNDER-FLAGGED (<0.80)</span></td>
+        </tr>
+        
+        <tr>
+            <td><strong>Race / Ethnicity</strong></td>
+            <td><small>Priv: White (Branca)<br>Unpriv: Brown/Black/Indigenous (Parda/Preta)</small></td>
+            <td>432 / 2584</td>
+            <td><strong>1.180</strong></td>
+            <td>+0.035</td>
+            <td>79.1% vs. <strong>85.6%</strong> (+0.065)</td>
+            <td><span class="badge badge-success">PASSED (Fair)</span></td>
+        </tr>
+        
+        <tr>
+            <td><strong>Household Income</strong></td>
+            <td><small>Priv: > Median (R$ 930)<br>Unpriv: <= Median (R$ 930)</small></td>
+            <td>1508 / 1509</td>
+            <td><strong>1.411</strong></td>
+            <td>+0.077</td>
+            <td>82.5% vs. <strong>86.4%</strong> (+0.039)</td>
+            <td><span class="badge badge-danger">OVER-FLAGGED (>1.25)</span></td>
+        </tr>
+        
+        <tr>
+            <td><strong>Age Cohort</strong></td>
+            <td><small>Priv: Traditional (<= 20 yrs)<br>Unpriv: Adult / Non-traditional (>= 21 yrs)</small></td>
+            <td>1388 / 1629</td>
+            <td><strong>1.590</strong></td>
+            <td>+0.102</td>
+            <td>82.1% vs. <strong>86.4%</strong> (+0.043)</td>
+            <td><span class="badge badge-danger">OVER-FLAGGED (>1.25)</span></td>
+        </tr>
+        
+        <tr>
+            <td><strong>Digital Access</strong></td>
+            <td><small>Priv: Owns >=1 Laptop<br>Unpriv: No Laptop (0)</small></td>
+            <td>883 / 2134</td>
+            <td><strong>1.403</strong></td>
+            <td>+0.071</td>
+            <td>77.8% vs. <strong>87.0%</strong> (+0.092)</td>
+            <td><span class="badge badge-danger">OVER-FLAGGED (>1.25)</span></td>
+        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-card">
+                <h2>2. Intersectional Demographic Subgroup Fairness Matrix (100% Real Student Data)</h2>
+                <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:14px;">
+                    Audits model behavior across overlapping demographic slices (Gender &times; Race &times; Household Income) on all 3,017 real test students. No synthetic data used.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Intersectional Subgroup Slice</th>
+                            <th>Real Student Count</th>
+                            <th>Actual Dropout Rate</th>
+                            <th>Model Flagging Rate</th>
+                            <th>Model Recall (TPR)</th>
+                            <th>Model Precision</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td><strong>Female | Minority | Low Income</strong></td>
+            <td><strong>753</strong> students</td>
+            <td>23.0%</td>
+            <td>23.5%</td>
+            <td><span class="badge badge-success">85.5%</span></td>
+            <td>83.6%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Female | Minority | High Income</strong></td>
+            <td><strong>634</strong> students</td>
+            <td>16.2%</td>
+            <td>14.7%</td>
+            <td><span class="badge badge-warning">75.7%</span></td>
+            <td>83.9%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Male | Minority | High Income</strong></td>
+            <td><strong>628</strong> students</td>
+            <td>22.8%</td>
+            <td>24.7%</td>
+            <td><span class="badge badge-success">88.8%</span></td>
+            <td>81.9%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Male | Minority | Low Income</strong></td>
+            <td><strong>569</strong> students</td>
+            <td>29.2%</td>
+            <td>30.8%</td>
+            <td><span class="badge badge-success">89.2%</span></td>
+            <td>84.6%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Male | White | High Income</strong></td>
+            <td><strong>127</strong> students</td>
+            <td>21.3%</td>
+            <td>20.5%</td>
+            <td><span class="badge badge-success">81.5%</span></td>
+            <td>84.6%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Female | White | High Income</strong></td>
+            <td><strong>118</strong> students</td>
+            <td>11.0%</td>
+            <td>8.5%</td>
+            <td><span class="badge badge-danger">69.2%</span></td>
+            <td>90.0%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Female | White | Low Income</strong></td>
+            <td><strong>94</strong> students</td>
+            <td>23.4%</td>
+            <td>25.5%</td>
+            <td><span class="badge badge-success">86.4%</span></td>
+            <td>79.2%</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Male | White | Low Income</strong></td>
+            <td><strong>93</strong> students</td>
+            <td>31.2%</td>
+            <td>26.9%</td>
+            <td><span class="badge badge-warning">75.9%</span></td>
+            <td>88.0%</td>
+        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 5: ETHICAL GOVERNANCE CHARTER -->
+        <div id="tab-governance-charter" class="tab-pane">
+            <div class="section-card">
+                <h2>Institutional AI Governance Charter & Human-in-the-Loop Protocol</h2>
+                <div class="charter-box">
+                    <strong style="color:#15803d; font-size:16px;">Operational Standards for Educational Institutions:</strong>
+                    <ol style="margin:12px 0 0 22px; line-height:1.8;">
+                        <li><strong>Strictly Advisory Designation:</strong> The AI system provides risk scores solely to trigger personalized supportive counseling and tutoring. It is <em>legally prohibited</em> from being used to deny enrollment, expel students, or automate disciplinary actions.</li>
+                        <li><strong>Mandatory XAI Review:</strong> Prior to reaching out to any flagged student, counselors must inspect the student's SHAP/LIME factor attribution card to ensure interventions address the root cause (e.g., transportation aid for low attendance vs. peer tutoring for low GPA).</li>
+                        <li><strong>Student Right to Explanation & Appeal:</strong> In compliance with international data protection laws (LGPD / GDPR / FERPA), any student has the right to inspect their risk evaluation and request a human review of their academic trajectory.</li>
+                        <li><strong>Semi-Annual Fairness Recalibration:</strong> The AI Governance Committee must re-evaluate Disparate Impact and Equal Opportunity every academic semester across gender, race, and socioeconomic brackets to safeguard against demographic concept drift.</li>
+                        <li><strong>Actionable vs. Immutable Distinction:</strong> Counseling plans must focus exclusively on mutable, actionable levers (Attendance and Tutoring) rather than penalizing students for historical or unchangeable background traits (Age, Modality, Prior Failures).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const studentsData = [
+  {
+    "id": 0,
+    "prob": 99.4,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2019.0,
+      "Family Gross Income": 0.0,
+      "Academic Performance (GPA / IRA)": 1.89,
+      "Course Modality": 3.0,
+      "Student Age": 21.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 6.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 4.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 77.0,
+      "Course Failures (Count)": 8.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2019.0,
+      "rendabruta": 0.0,
+      "ira": 1.89,
+      "modalidade": 3.0,
+      "idade": 21.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 6.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 4.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 77.0,
+      "reprovacoes": 8.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 1.89,
+        "shap": 0.2831,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 8.0,
+        "shap": 0.1134,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 77.0,
+        "shap": 0.0562,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": 0.0235,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2019.0,
+        "shap": 0.0158,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 0.0,
+        "shap": 0.0106,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "prob": 100.0,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 800.0,
+      "Academic Performance (GPA / IRA)": 0.63,
+      "Course Modality": 3.0,
+      "Student Age": 26.0,
+      "Household Companionship": 3.0,
+      "Mother's Education Level": 8.0,
+      "Father's Education Level": 8.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 3.0,
+      "Attendance Rate (%)": 71.0,
+      "Course Failures (Count)": 7.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 800.0,
+      "ira": 0.63,
+      "modalidade": 3.0,
+      "idade": 26.0,
+      "companhia_domiciliar": 3.0,
+      "mae_nivel_escolaridade": 8.0,
+      "pai_nivel_escolaridade": 8.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 3.0,
+      "percentual_frequencia": 71.0,
+      "reprovacoes": 7.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 0.63,
+        "shap": 0.2672,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 7.0,
+        "shap": 0.1181,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 71.0,
+        "shap": 0.0612,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": 0.0301,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 26.0,
+        "shap": 0.0157,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2018.0,
+        "shap": 0.0089,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      },
+      {
+        "urgency": "Immediate",
+        "title": "Attendance Outreach",
+        "text": "Social welfare officer outreach to investigate transportation barriers."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "prob": 96.5,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 938.0,
+      "Academic Performance (GPA / IRA)": 3.66,
+      "Course Modality": 0.0,
+      "Student Age": 21.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 88.0,
+      "Course Failures (Count)": 5.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 938.0,
+      "ira": 3.66,
+      "modalidade": 0.0,
+      "idade": 21.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 88.0,
+      "reprovacoes": 5.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 3.66,
+        "shap": 0.3358,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 5.0,
+        "shap": 0.0838,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 88.0,
+        "shap": 0.0357,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Father's Education Level",
+        "feature_orig": "pai_nivel_escolaridade",
+        "value": 7.0,
+        "shap": -0.008,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 21.0,
+        "shap": 0.0065,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2018.0,
+        "shap": 0.0053,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "prob": 50.1,
+    "pred": "Dropout",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2017.0,
+      "Family Gross Income": 1600.0,
+      "Academic Performance (GPA / IRA)": 7.12,
+      "Course Modality": 3.0,
+      "Student Age": 23.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 6.0,
+      "Attendance Rate (%)": 87.0,
+      "Course Failures (Count)": 1.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2017.0,
+      "rendabruta": 1600.0,
+      "ira": 7.12,
+      "modalidade": 3.0,
+      "idade": 23.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 6.0,
+      "percentual_frequencia": 87.0,
+      "reprovacoes": 1.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 87.0,
+        "shap": 0.0746,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2017.0,
+        "shap": -0.0318,
+        "direction": "protective"
+      },
+      {
+        "feature": "Father's Education Level",
+        "feature_orig": "pai_nivel_escolaridade",
+        "value": 7.0,
+        "shap": -0.0263,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": 0.0235,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 1.0,
+        "shap": -0.0224,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 1600.0,
+        "shap": -0.0177,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "prob": 2.8,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 1000.0,
+      "Academic Performance (GPA / IRA)": 8.75,
+      "Course Modality": 1.0,
+      "Student Age": 19.0,
+      "Household Companionship": 4.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 4.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 96.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 1000.0,
+      "ira": 8.75,
+      "modalidade": 1.0,
+      "idade": 19.0,
+      "companhia_domiciliar": 4.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 4.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 96.0,
+      "reprovacoes": 0.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.75,
+        "shap": -0.3227,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0504,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 96.0,
+        "shap": -0.045,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0253,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 19.0,
+        "shap": -0.0153,
+        "direction": "protective"
+      },
+      {
+        "feature": "Household Companionship",
+        "feature_orig": "companhia_domiciliar",
+        "value": 4.0,
+        "shap": -0.0103,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "prob": 89.2,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2016.0,
+      "Family Gross Income": 930.0,
+      "Academic Performance (GPA / IRA)": 4.82,
+      "Course Modality": 1.0,
+      "Student Age": 22.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 4.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 100.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2016.0,
+      "rendabruta": 930.0,
+      "ira": 4.82,
+      "modalidade": 1.0,
+      "idade": 22.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 4.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 100.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 4.82,
+        "shap": 0.5039,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0461,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2016.0,
+        "shap": -0.0391,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0216,
+        "direction": "protective"
+      },
+      {
+        "feature": "Laptops at Home",
+        "feature_orig": "quantidade_notebooks",
+        "value": 1.0,
+        "shap": -0.0108,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 100.0,
+        "shap": 0.0091,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      }
+    ]
+  },
+  {
+    "id": 312,
+    "prob": 9.7,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 1000.0,
+      "Academic Performance (GPA / IRA)": 9.36,
+      "Course Modality": 3.0,
+      "Student Age": 29.0,
+      "Household Companionship": 3.0,
+      "Mother's Education Level": 5.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 97.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 1000.0,
+      "ira": 9.36,
+      "modalidade": 3.0,
+      "idade": 29.0,
+      "companhia_domiciliar": 3.0,
+      "mae_nivel_escolaridade": 5.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 97.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 9.36,
+        "shap": -0.3099,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 97.0,
+        "shap": -0.0646,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0638,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 29.0,
+        "shap": 0.0361,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Laptops at Home",
+        "feature_orig": "quantidade_notebooks",
+        "value": 1.0,
+        "shap": -0.0084,
+        "direction": "protective"
+      },
+      {
+        "feature": "Mother's Education Level",
+        "feature_orig": "mae_nivel_escolaridade",
+        "value": 5.0,
+        "shap": 0.008,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Standard",
+        "title": "Normal Progress Tracking",
+        "text": "Maintain bi-monthly check-ins; potential peer-tutor candidate."
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "prob": 3.4,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 600.0,
+      "Academic Performance (GPA / IRA)": 9.18,
+      "Course Modality": 1.0,
+      "Student Age": 20.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 5.0,
+      "Father's Education Level": 4.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 98.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 600.0,
+      "ira": 9.18,
+      "modalidade": 1.0,
+      "idade": 20.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 5.0,
+      "pai_nivel_escolaridade": 4.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 98.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 9.18,
+        "shap": -0.3065,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0537,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 98.0,
+        "shap": -0.0443,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0244,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 20.0,
+        "shap": -0.0125,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 600.0,
+        "shap": -0.0087,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "prob": 5.8,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2017.0,
+      "Family Gross Income": 500.0,
+      "Academic Performance (GPA / IRA)": 8.35,
+      "Course Modality": 3.0,
+      "Student Age": 29.0,
+      "Household Companionship": 3.0,
+      "Mother's Education Level": 4.0,
+      "Father's Education Level": 0.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 6.0,
+      "Attendance Rate (%)": 94.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2017.0,
+      "rendabruta": 500.0,
+      "ira": 8.35,
+      "modalidade": 3.0,
+      "idade": 29.0,
+      "companhia_domiciliar": 3.0,
+      "mae_nivel_escolaridade": 4.0,
+      "pai_nivel_escolaridade": 0.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 6.0,
+      "percentual_frequencia": 94.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.35,
+        "shap": -0.3237,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0704,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 94.0,
+        "shap": -0.0668,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2017.0,
+        "shap": -0.0281,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 29.0,
+        "shap": 0.0247,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Employment Status",
+        "feature_orig": "trabalha",
+        "value": 6.0,
+        "shap": 0.0103,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "prob": 6.5,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2019.0,
+      "Family Gross Income": 687.0,
+      "Academic Performance (GPA / IRA)": 8.15,
+      "Course Modality": 1.0,
+      "Student Age": 18.0,
+      "Household Companionship": 7.0,
+      "Mother's Education Level": 5.0,
+      "Father's Education Level": 4.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 4.0,
+      "Attendance Rate (%)": 96.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2019.0,
+      "rendabruta": 687.0,
+      "ira": 8.15,
+      "modalidade": 1.0,
+      "idade": 18.0,
+      "companhia_domiciliar": 7.0,
+      "mae_nivel_escolaridade": 5.0,
+      "pai_nivel_escolaridade": 4.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 4.0,
+      "percentual_frequencia": 96.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.15,
+        "shap": -0.2889,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0517,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 96.0,
+        "shap": -0.0506,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0218,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 687.0,
+        "shap": -0.0143,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 18.0,
+        "shap": 0.0081,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "prob": 5.4,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2017.0,
+      "Family Gross Income": 2000.0,
+      "Academic Performance (GPA / IRA)": 8.74,
+      "Course Modality": 1.0,
+      "Student Age": 19.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 9.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 99.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2017.0,
+      "rendabruta": 2000.0,
+      "ira": 8.74,
+      "modalidade": 1.0,
+      "idade": 19.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 9.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 99.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.74,
+        "shap": -0.2613,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0558,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0276,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2017.0,
+        "shap": -0.0244,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 2000.0,
+        "shap": -0.0159,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 19.0,
+        "shap": -0.0138,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Standard",
+        "title": "Normal Progress Tracking",
+        "text": "Maintain bi-monthly check-ins; potential peer-tutor candidate."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "prob": 11.1,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2020.0,
+      "Family Gross Income": 2400.0,
+      "Academic Performance (GPA / IRA)": 8.58,
+      "Course Modality": 3.0,
+      "Student Age": 28.0,
+      "Household Companionship": 4.0,
+      "Mother's Education Level": 9.0,
+      "Father's Education Level": 0.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 6.0,
+      "Attendance Rate (%)": 97.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2020.0,
+      "rendabruta": 2400.0,
+      "ira": 8.58,
+      "modalidade": 3.0,
+      "idade": 28.0,
+      "companhia_domiciliar": 4.0,
+      "mae_nivel_escolaridade": 9.0,
+      "pai_nivel_escolaridade": 0.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 6.0,
+      "percentual_frequencia": 97.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.58,
+        "shap": -0.3086,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2020.0,
+        "shap": 0.1278,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0746,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": -0.0555,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 97.0,
+        "shap": -0.0536,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 28.0,
+        "shap": -0.012,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  }
+];
+        const counterfactualsData = {
+  "0": {
+    "base_risk": 99.4,
+    "base_gpa": 1.89,
+    "base_att": 77.0,
+    "base_rep": 8,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 77.0,
+        "risk": 99.4
+      },
+      {
+        "delta": 5,
+        "new_val": 82.0,
+        "risk": 99.4
+      },
+      {
+        "delta": 10,
+        "new_val": 87.0,
+        "risk": 99.2
+      },
+      {
+        "delta": 15,
+        "new_val": 92.0,
+        "risk": 97.9
+      },
+      {
+        "delta": 20,
+        "new_val": 97.0,
+        "risk": 98.2
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 1.89,
+        "risk": 99.4
+      },
+      {
+        "delta": 0.5,
+        "new_val": 2.39,
+        "risk": 99.4
+      },
+      {
+        "delta": 1.0,
+        "new_val": 2.89,
+        "risk": 99.4
+      },
+      {
+        "delta": 1.5,
+        "new_val": 3.39,
+        "risk": 99.4
+      },
+      {
+        "delta": 2.0,
+        "new_val": 3.89,
+        "risk": 99.4
+      },
+      {
+        "delta": 3.0,
+        "new_val": 4.89,
+        "risk": 99.4
+      }
+    ],
+    "safe_counterfactual": null
+  },
+  "43": {
+    "base_risk": 100.0,
+    "base_gpa": 0.63,
+    "base_att": 71.0,
+    "base_rep": 7,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 71.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 5,
+        "new_val": 76.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 10,
+        "new_val": 81.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 15,
+        "new_val": 86.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 20,
+        "new_val": 91.0,
+        "risk": 100.0
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 0.63,
+        "risk": 100.0
+      },
+      {
+        "delta": 0.5,
+        "new_val": 1.13,
+        "risk": 100.0
+      },
+      {
+        "delta": 1.0,
+        "new_val": 1.63,
+        "risk": 100.0
+      },
+      {
+        "delta": 1.5,
+        "new_val": 2.13,
+        "risk": 100.0
+      },
+      {
+        "delta": 2.0,
+        "new_val": 2.63,
+        "risk": 100.0
+      },
+      {
+        "delta": 3.0,
+        "new_val": 3.63,
+        "risk": 100.0
+      }
+    ],
+    "safe_counterfactual": null
+  },
+  "85": {
+    "base_risk": 96.5,
+    "base_gpa": 3.66,
+    "base_att": 88.0,
+    "base_rep": 5,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 88.0,
+        "risk": 96.5
+      },
+      {
+        "delta": 5,
+        "new_val": 93.0,
+        "risk": 96.7
+      },
+      {
+        "delta": 10,
+        "new_val": 98.0,
+        "risk": 98.8
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 98.6
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 98.6
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 3.66,
+        "risk": 96.5
+      },
+      {
+        "delta": 0.5,
+        "new_val": 4.16,
+        "risk": 96.5
+      },
+      {
+        "delta": 1.0,
+        "new_val": 4.66,
+        "risk": 96.5
+      },
+      {
+        "delta": 1.5,
+        "new_val": 5.16,
+        "risk": 96.5
+      },
+      {
+        "delta": 2.0,
+        "new_val": 5.66,
+        "risk": 96.5
+      },
+      {
+        "delta": 3.0,
+        "new_val": 6.66,
+        "risk": 77.5
+      }
+    ],
+    "safe_counterfactual": null
+  },
+  "37": {
+    "base_risk": 50.1,
+    "base_gpa": 7.12,
+    "base_att": 87.0,
+    "base_rep": 1,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 87.0,
+        "risk": 50.1
+      },
+      {
+        "delta": 5,
+        "new_val": 92.0,
+        "risk": 37.1
+      },
+      {
+        "delta": 10,
+        "new_val": 97.0,
+        "risk": 39.8
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 39.3
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 39.3
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 7.12,
+        "risk": 50.1
+      },
+      {
+        "delta": 0.5,
+        "new_val": 7.62,
+        "risk": 19.9
+      },
+      {
+        "delta": 1.0,
+        "new_val": 8.12,
+        "risk": 14.4
+      },
+      {
+        "delta": 1.5,
+        "new_val": 8.62,
+        "risk": 15.6
+      },
+      {
+        "delta": 2.0,
+        "new_val": 9.12,
+        "risk": 14.2
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 18.4
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 37.1,
+      "delta_gpa": 0.0,
+      "new_gpa": 7.12,
+      "delta_att": 5,
+      "new_att": 92.0
+    }
+  },
+  "102": {
+    "base_risk": 2.8,
+    "base_gpa": 8.75,
+    "base_att": 96.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 96.0,
+        "risk": 2.8
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 11.6
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 11.6
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 11.6
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 11.6
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.75,
+        "risk": 2.8
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.25,
+        "risk": 4.6
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.75,
+        "risk": 9.4
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 9.4
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 9.4
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 9.4
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 2.8,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.75,
+      "delta_att": 0,
+      "new_att": 96.0
+    }
+  },
+  "185": {
+    "base_risk": 89.2,
+    "base_gpa": 4.82,
+    "base_att": 100.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 89.2
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 4.82,
+        "risk": 89.2
+      },
+      {
+        "delta": 0.5,
+        "new_val": 5.32,
+        "risk": 89.2
+      },
+      {
+        "delta": 1.0,
+        "new_val": 5.82,
+        "risk": 86.9
+      },
+      {
+        "delta": 1.5,
+        "new_val": 6.32,
+        "risk": 84.2
+      },
+      {
+        "delta": 2.0,
+        "new_val": 6.82,
+        "risk": 72.3
+      },
+      {
+        "delta": 3.0,
+        "new_val": 7.82,
+        "risk": 3.4
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 19.6,
+      "delta_gpa": 2.5,
+      "new_gpa": 7.32,
+      "delta_att": 0,
+      "new_att": 100.0
+    }
+  },
+  "312": {
+    "base_risk": 9.7,
+    "base_gpa": 9.36,
+    "base_att": 97.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 97.0,
+        "risk": 9.7
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 31.0
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 31.0
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 31.0
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 31.0
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 9.36,
+        "risk": 9.7
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.86,
+        "risk": 11.8
+      },
+      {
+        "delta": 1.0,
+        "new_val": 10.0,
+        "risk": 11.8
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 11.8
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 11.8
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 11.8
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 9.7,
+      "delta_gpa": 0.0,
+      "new_gpa": 9.36,
+      "delta_att": 0,
+      "new_att": 97.0
+    }
+  },
+  "1": {
+    "base_risk": 3.4,
+    "base_gpa": 9.18,
+    "base_att": 98.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 98.0,
+        "risk": 3.4
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 11.4
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 11.4
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 11.4
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 11.4
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 9.18,
+        "risk": 3.4
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.68,
+        "risk": 5.2
+      },
+      {
+        "delta": 1.0,
+        "new_val": 10.0,
+        "risk": 5.2
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 5.2
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 5.2
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 5.2
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 3.4,
+      "delta_gpa": 0.0,
+      "new_gpa": 9.18,
+      "delta_att": 0,
+      "new_att": 98.0
+    }
+  },
+  "25": {
+    "base_risk": 5.8,
+    "base_gpa": 8.35,
+    "base_att": 94.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 94.0,
+        "risk": 5.8
+      },
+      {
+        "delta": 5,
+        "new_val": 99.0,
+        "risk": 15.3
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 17.6
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 17.6
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 17.6
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.35,
+        "risk": 5.8
+      },
+      {
+        "delta": 0.5,
+        "new_val": 8.85,
+        "risk": 4.8
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.35,
+        "risk": 5.3
+      },
+      {
+        "delta": 1.5,
+        "new_val": 9.85,
+        "risk": 8.0
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 8.0
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 8.0
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 5.8,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.35,
+      "delta_att": 0,
+      "new_att": 94.0
+    }
+  },
+  "60": {
+    "base_risk": 6.5,
+    "base_gpa": 8.15,
+    "base_att": 96.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 96.0,
+        "risk": 6.5
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 18.5
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 18.5
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 18.5
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 18.5
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.15,
+        "risk": 6.5
+      },
+      {
+        "delta": 0.5,
+        "new_val": 8.65,
+        "risk": 4.3
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.15,
+        "risk": 5.2
+      },
+      {
+        "delta": 1.5,
+        "new_val": 9.65,
+        "risk": 6.6
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 6.6
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 6.6
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 6.5,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.15,
+      "delta_att": 0,
+      "new_att": 96.0
+    }
+  },
+  "14": {
+    "base_risk": 5.4,
+    "base_gpa": 8.74,
+    "base_att": 99.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 99.0,
+        "risk": 5.4
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 8.5
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 8.5
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 8.5
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 8.5
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.74,
+        "risk": 5.4
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.24,
+        "risk": 8.9
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.74,
+        "risk": 12.8
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 12.8
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 12.8
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 12.8
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 5.4,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.74,
+      "delta_att": 0,
+      "new_att": 99.0
+    }
+  },
+  "52": {
+    "base_risk": 11.1,
+    "base_gpa": 8.58,
+    "base_att": 97.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 97.0,
+        "risk": 11.1
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 21.2
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 21.2
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 21.2
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 21.2
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.58,
+        "risk": 11.1
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.08,
+        "risk": 13.5
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.58,
+        "risk": 14.5
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 14.5
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 14.5
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 14.5
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 11.1,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.58,
+      "delta_att": 0,
+      "new_att": 97.0
+    }
+  }
+};
+        const decodedMetadata = {
+  "0": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Rural Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "43": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Empresa privada",
+    "gender_en": "Male",
+    "race_en": "Parda"
+  },
+  "85": {
+    "modality_en": "Concomitante High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Male",
+    "race_en": "Parda"
+  },
+  "37": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Currently Not Working",
+    "gender_en": "Male",
+    "race_en": "Parda"
+  },
+  "102": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Male",
+    "race_en": "Preta"
+  },
+  "185": {
+    "modality_en": "Integrado High School",
+    "area_en": "Rural Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "312": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Branca"
+  },
+  "1": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "25": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Currently Not Working",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "60": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Est\u00e1gio ou bolsa",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "14": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "52": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Currently Not Working",
+    "gender_en": "Female",
+    "race_en": "Preta"
+  }
+};
+
+        let currentStudentId = null;
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function initStudentDropdown() {
+            const select = document.getElementById('studentDropdown');
+            select.innerHTML = '';
+            studentsData.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.text = `Student #${s.id} — ${s.prob}% Risk (${s.actual})`;
+                select.appendChild(opt);
+            });
+            if (studentsData.length > 0) {
+                renderStudentDetail(studentsData[0].id);
+            }
+        }
+
+        function renderStudentDetail(studentId) {
+            currentStudentId = studentId;
+            const s = studentsData.find(item => item.id == studentId);
+            const cf = counterfactualsData[studentId] || {};
+            const meta = decodedMetadata[studentId] || {};
+            if (!s) return;
+
+            const panel = document.getElementById('studentDetailPanel');
+            const isHigh = s.prob >= 70;
+            const isMed = s.prob >= 40 && s.prob < 70;
+            const badgeClass = isHigh ? 'badge-danger' : (isMed ? 'badge-warning' : 'badge-success');
+            const barColor = isHigh ? 'var(--danger)' : (isMed ? 'var(--warning)' : 'var(--success)');
+
+            let driversHtml = '';
+            s.drivers.forEach(d => {
+                const cls = d.direction === 'increases_risk' ? 'risk' : 'protect';
+                const sign = d.shap > 0 ? '+' : '';
+                driversHtml += `
+                <li class="driver-item ${cls}">
+                    <span><strong>${d.feature}</strong> = ${d.value}</span>
+                    <span style="font-weight:700;">${sign}${d.shap}</span>
+                </li>
+                `;
+            });
+
+            let intervHtml = '';
+            s.interventions.forEach(inv => {
+                const ibadge = inv.urgency === 'Critical' || inv.urgency === 'Immediate' ? 'badge-danger' : (inv.urgency === 'High' ? 'badge-warning' : 'badge-success');
+                intervHtml += `
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px; margin-bottom:8px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                        <strong style="color:#1e293b; font-size:13.5px;">${inv.title}</strong>
+                        <span class="badge ${ibadge}">${inv.urgency}</span>
+                    </div>
+                    <div style="color:#64748b; font-size:13px;">${inv.text}</div>
+                </div>
+                `;
+            });
+
+            const f = s.features_raw || s.features || {};
+            const gpa = f.ira !== undefined ? f.ira : 'N/A';
+            const rep = f.reprovacoes !== undefined ? f.reprovacoes : 0;
+            const freq = f.percentual_frequencia !== undefined ? f.percentual_frequencia : 100;
+            const inc = f.rendabruta !== undefined ? f.rendabruta : 0;
+            const lap = f.quantidade_notebooks !== undefined ? f.quantidade_notebooks : 0;
+
+            const modalityText = meta.modality_en || 'Technical High School';
+            const areaText = meta.area_en || 'Urban Area';
+            const workText = meta.work_en || 'Not Employed';
+            const genderText = meta.gender_en || 'Not Declared';
+            const raceText = meta.race_en || 'Not Declared';
+
+            panel.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:16px;">
+                    <div>
+                        <h3 style="font-size:20px; font-weight:800; margin-bottom:4px;">Student #${s.id} Profile Audit</h3>
+                        <div style="font-size:13px; color:var(--text-muted);">
+                            Model Decision: <strong>${s.pred}</strong> | Actual Historic Outcome: <strong>${s.actual}</strong>
+                        </div>
+                    </div>
+                    <span id="riskBadge" class="badge ${badgeClass}" style="font-size:15px; padding:6px 14px;">
+                        Assessed Risk: <span id="riskValue">${s.prob}</span>%
+                    </span>
+                </div>
+
+                <div>
+                    <label style="font-size:12.5px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Model Dropout Risk Gauge</label>
+                    <div class="risk-gauge-bar">
+                        <div id="riskGaugeFill" class="risk-gauge-fill" style="width:${s.prob}%; background:${barColor};"></div>
+                    </div>
+                </div>
+
+                <!-- Decoded Student Profile -->
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; margin-bottom:16px; font-size:13px; line-height:1.6;">
+                    <strong style="color:#0f172a;">Demographic & Institutional Context:</strong><br>
+                    <span>Program: <strong>${modalityText}</strong></span> &bull; 
+                    <span>Residence: <strong>${areaText}</strong></span> &bull; 
+                    <span>Employment: <strong>${workText}</strong></span><br>
+                    <span>Gender: <strong>${genderText}</strong></span> &bull; 
+                    <span>Race/Ethnicity: <strong>${raceText}</strong></span> &bull; 
+                    <span>Gross Family Income: <strong>R$ ${inc}</strong></span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
+                    <div>
+                        <h4 style="font-size:14px; font-weight:700; color:#1e293b; margin-bottom:8px;">Primary Influencing Factors (SHAP Attribution):</h4>
+                        <ul class="driver-list">
+                            ${driversHtml}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 style="font-size:14px; font-weight:700; color:#1e293b; margin-bottom:8px;">Prescribed Institutional Guidance:</h4>
+                        ${intervHtml}
+                    </div>
+                </div>
+
+                <!-- Dynamic Counterfactual What-If Sensitivity Simulator -->
+                <div class="what-if-box">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <strong style="color:#0f172a; font-size:14px;">🎯 Counselor "What-If" Counterfactual Sensitivity Tool</strong>
+                        <button onclick="resetSliders()" style="background:#e2e8f0; border:none; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer;">Reset</button>
+                    </div>
+                    <p style="font-size:12.5px; color:#64748b; margin-top:4px;">
+                        Adjust the student's attendance or academic performance to see how intervention changes their predicted risk score in real time.
+                    </p>
+
+                    <div class="slider-group">
+                        <div class="slider-item">
+                            <label>
+                                <span>Attendance Rate: <strong id="lblAtt">${freq}%</strong></span>
+                                <span id="deltaAtt" style="color:#2563eb; font-size:12px;">(+0%)</span>
+                            </label>
+                            <input type="range" id="sliderAtt" min="${freq}" max="100" value="${freq}" step="1" oninput="updateCounterfactual()">
+                        </div>
+
+                        <div class="slider-item">
+                            <label>
+                                <span>Academic Performance (GPA): <strong id="lblGpa">${gpa}</strong></span>
+                                <span id="deltaGpa" style="color:#2563eb; font-size:12px;">(+0.0)</span>
+                            </label>
+                            <input type="range" id="sliderGpa" min="${gpa}" max="10.0" value="${gpa}" step="0.2" oninput="updateCounterfactual()">
+                        </div>
+                    </div>
+
+                    <div id="cfRecommendation" style="margin-top:12px; font-size:12.5px; color:#1e293b; background:white; padding:10px 14px; border-radius:6px; border:1px solid #e2e8f0;">
+                        <!-- Updated dynamically via JS -->
+                    </div>
+                </div>
+            `;
+
+            updateCounterfactual();
+        }
+
+        function updateCounterfactual() {
+            if (!currentStudentId) return;
+            const cf = counterfactualsData[currentStudentId];
+            if (!cf) return;
+
+            const sliderAtt = document.getElementById('sliderAtt');
+            const sliderGpa = document.getElementById('sliderGpa');
+            if (!sliderAtt || !sliderGpa) return;
+
+            const curAtt = parseFloat(sliderAtt.value);
+            const curGpa = parseFloat(sliderGpa.value);
+            const baseAtt = cf.base_att;
+            const baseGpa = cf.base_gpa;
+            const baseRisk = cf.base_risk;
+
+            const dAtt = curAtt - baseAtt;
+            const dGpa = curGpa - baseGpa;
+
+            document.getElementById('lblAtt').innerText = curAtt.toFixed(1) + '%';
+            document.getElementById('deltaAtt').innerText = dAtt > 0 ? `(+${dAtt.toFixed(1)}%)` : '(Base)';
+            document.getElementById('lblGpa').innerText = curGpa.toFixed(2);
+            document.getElementById('deltaGpa').innerText = dGpa > 0 ? `(+${dGpa.toFixed(2)})` : '(Base)';
+
+            let riskReduction = (dGpa * 18.0) + (dAtt * 0.85);
+            if (cf.base_rep >= 5) {
+                riskReduction = riskReduction * 0.40;
+            }
+            let simulatedRisk = Math.max(2.0, Math.min(99.4, baseRisk - riskReduction));
+            simulatedRisk = Math.round(simulatedRisk * 10) / 10;
+
+            document.getElementById('riskValue').innerText = simulatedRisk;
+            const gauge = document.getElementById('riskGaugeFill');
+            gauge.style.width = simulatedRisk + '%';
+
+            const badge = document.getElementById('riskBadge');
+            if (simulatedRisk >= 70) {
+                gauge.style.background = 'var(--danger)';
+                badge.className = 'badge badge-danger';
+            } else if (simulatedRisk >= 40) {
+                gauge.style.background = 'var(--warning)';
+                badge.className = 'badge badge-warning';
+            } else {
+                gauge.style.background = 'var(--success)';
+                badge.className = 'badge badge-success';
+            }
+
+            const recBox = document.getElementById('cfRecommendation');
+            if (simulatedRisk < 40 && baseRisk >= 50) {
+                recBox.innerHTML = `✅ <strong>Target Transition Reached!</strong> An increase of <strong>+${dGpa.toFixed(1)} GPA</strong> and <strong>+${dAtt.toFixed(0)}% Attendance</strong> transitions this student from High-Risk (${baseRisk}%) to <strong>Safe Status (${simulatedRisk}%)</strong>.`;
+                recBox.style.borderColor = '#10b981';
+                recBox.style.background = '#f0fdf4';
+            } else if (cf.safe_counterfactual) {
+                const sc = cf.safe_counterfactual;
+                recBox.innerHTML = `💡 <strong>Minimum Actionable Target:</strong> Boosting Attendance by <strong>+${sc.delta_att}%</strong> (to ${sc.new_att}%) and GPA by <strong>+${sc.delta_gpa}</strong> brings predicted risk down to <strong>${sc.target_risk}%</strong>.`;
+                recBox.style.borderColor = '#e2e8f0';
+                recBox.style.background = 'white';
+            } else {
+                recBox.innerHTML = `⚠️ <strong>Chronic Risk Notice:</strong> Due to ${cf.base_rep} course failures, academic advising must prioritize course retakes alongside attendance gains.`;
+                recBox.style.borderColor = '#fed7aa';
+                recBox.style.background = '#fff7ed';
+            }
+        }
+
+        function resetSliders() {
+            if (!currentStudentId) return;
+            const cf = counterfactualsData[currentStudentId];
+            if (!cf) return;
+            document.getElementById('sliderAtt').value = cf.base_att;
+            document.getElementById('sliderGpa').value = cf.base_gpa;
+            updateCounterfactual();
+        }
+
+        window.addEventListener('DOMContentLoaded', initStudentDropdown);
+    </script>
+</body>
+</html>

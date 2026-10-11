@@ -1,0 +1,848 @@
+{
+  "0": {
+    "base_risk": 99.4,
+    "base_gpa": 1.89,
+    "base_att": 77.0,
+    "base_rep": 8,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 77.0,
+        "risk": 99.4
+      },
+      {
+        "delta": 5,
+        "new_val": 82.0,
+        "risk": 99.4
+      },
+      {
+        "delta": 10,
+        "new_val": 87.0,
+        "risk": 99.2
+      },
+      {
+        "delta": 15,
+        "new_val": 92.0,
+        "risk": 97.9
+      },
+      {
+        "delta": 20,
+        "new_val": 97.0,
+        "risk": 98.2
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 1.89,
+        "risk": 99.4
+      },
+      {
+        "delta": 0.5,
+        "new_val": 2.39,
+        "risk": 99.4
+      },
+      {
+        "delta": 1.0,
+        "new_val": 2.89,
+        "risk": 99.4
+      },
+      {
+        "delta": 1.5,
+        "new_val": 3.39,
+        "risk": 99.4
+      },
+      {
+        "delta": 2.0,
+        "new_val": 3.89,
+        "risk": 99.4
+      },
+      {
+        "delta": 3.0,
+        "new_val": 4.89,
+        "risk": 99.4
+      }
+    ],
+    "safe_counterfactual": null
+  },
+  "43": {
+    "base_risk": 100.0,
+    "base_gpa": 0.63,
+    "base_att": 71.0,
+    "base_rep": 7,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 71.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 5,
+        "new_val": 76.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 10,
+        "new_val": 81.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 15,
+        "new_val": 86.0,
+        "risk": 100.0
+      },
+      {
+        "delta": 20,
+        "new_val": 91.0,
+        "risk": 100.0
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 0.63,
+        "risk": 100.0
+      },
+      {
+        "delta": 0.5,
+        "new_val": 1.13,
+        "risk": 100.0
+      },
+      {
+        "delta": 1.0,
+        "new_val": 1.63,
+        "risk": 100.0
+      },
+      {
+        "delta": 1.5,
+        "new_val": 2.13,
+        "risk": 100.0
+      },
+      {
+        "delta": 2.0,
+        "new_val": 2.63,
+        "risk": 100.0
+      },
+      {
+        "delta": 3.0,
+        "new_val": 3.63,
+        "risk": 100.0
+      }
+    ],
+    "safe_counterfactual": null
+  },
+  "85": {
+    "base_risk": 96.5,
+    "base_gpa": 3.66,
+    "base_att": 88.0,
+    "base_rep": 5,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 88.0,
+        "risk": 96.5
+      },
+      {
+        "delta": 5,
+        "new_val": 93.0,
+        "risk": 96.7
+      },
+      {
+        "delta": 10,
+        "new_val": 98.0,
+        "risk": 98.8
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 98.6
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 98.6
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 3.66,
+        "risk": 96.5
+      },
+      {
+        "delta": 0.5,
+        "new_val": 4.16,
+        "risk": 96.5
+      },
+      {
+        "delta": 1.0,
+        "new_val": 4.66,
+        "risk": 96.5
+      },
+      {
+        "delta": 1.5,
+        "new_val": 5.16,
+        "risk": 96.5
+      },
+      {
+        "delta": 2.0,
+        "new_val": 5.66,
+        "risk": 96.5
+      },
+      {
+        "delta": 3.0,
+        "new_val": 6.66,
+        "risk": 77.5
+      }
+    ],
+    "safe_counterfactual": null
+  },
+  "37": {
+    "base_risk": 50.1,
+    "base_gpa": 7.12,
+    "base_att": 87.0,
+    "base_rep": 1,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 87.0,
+        "risk": 50.1
+      },
+      {
+        "delta": 5,
+        "new_val": 92.0,
+        "risk": 37.1
+      },
+      {
+        "delta": 10,
+        "new_val": 97.0,
+        "risk": 39.8
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 39.3
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 39.3
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 7.12,
+        "risk": 50.1
+      },
+      {
+        "delta": 0.5,
+        "new_val": 7.62,
+        "risk": 19.9
+      },
+      {
+        "delta": 1.0,
+        "new_val": 8.12,
+        "risk": 14.4
+      },
+      {
+        "delta": 1.5,
+        "new_val": 8.62,
+        "risk": 15.6
+      },
+      {
+        "delta": 2.0,
+        "new_val": 9.12,
+        "risk": 14.2
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 18.4
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 37.1,
+      "delta_gpa": 0.0,
+      "new_gpa": 7.12,
+      "delta_att": 5,
+      "new_att": 92.0
+    }
+  },
+  "102": {
+    "base_risk": 2.8,
+    "base_gpa": 8.75,
+    "base_att": 96.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 96.0,
+        "risk": 2.8
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 11.6
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 11.6
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 11.6
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 11.6
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.75,
+        "risk": 2.8
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.25,
+        "risk": 4.6
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.75,
+        "risk": 9.4
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 9.4
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 9.4
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 9.4
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 2.8,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.75,
+      "delta_att": 0,
+      "new_att": 96.0
+    }
+  },
+  "185": {
+    "base_risk": 89.2,
+    "base_gpa": 4.82,
+    "base_att": 100.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 89.2
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 89.2
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 4.82,
+        "risk": 89.2
+      },
+      {
+        "delta": 0.5,
+        "new_val": 5.32,
+        "risk": 89.2
+      },
+      {
+        "delta": 1.0,
+        "new_val": 5.82,
+        "risk": 86.9
+      },
+      {
+        "delta": 1.5,
+        "new_val": 6.32,
+        "risk": 84.2
+      },
+      {
+        "delta": 2.0,
+        "new_val": 6.82,
+        "risk": 72.3
+      },
+      {
+        "delta": 3.0,
+        "new_val": 7.82,
+        "risk": 3.4
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 19.6,
+      "delta_gpa": 2.5,
+      "new_gpa": 7.32,
+      "delta_att": 0,
+      "new_att": 100.0
+    }
+  },
+  "312": {
+    "base_risk": 9.7,
+    "base_gpa": 9.36,
+    "base_att": 97.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 97.0,
+        "risk": 9.7
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 31.0
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 31.0
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 31.0
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 31.0
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 9.36,
+        "risk": 9.7
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.86,
+        "risk": 11.8
+      },
+      {
+        "delta": 1.0,
+        "new_val": 10.0,
+        "risk": 11.8
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 11.8
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 11.8
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 11.8
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 9.7,
+      "delta_gpa": 0.0,
+      "new_gpa": 9.36,
+      "delta_att": 0,
+      "new_att": 97.0
+    }
+  },
+  "1": {
+    "base_risk": 3.4,
+    "base_gpa": 9.18,
+    "base_att": 98.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 98.0,
+        "risk": 3.4
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 11.4
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 11.4
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 11.4
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 11.4
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 9.18,
+        "risk": 3.4
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.68,
+        "risk": 5.2
+      },
+      {
+        "delta": 1.0,
+        "new_val": 10.0,
+        "risk": 5.2
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 5.2
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 5.2
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 5.2
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 3.4,
+      "delta_gpa": 0.0,
+      "new_gpa": 9.18,
+      "delta_att": 0,
+      "new_att": 98.0
+    }
+  },
+  "25": {
+    "base_risk": 5.8,
+    "base_gpa": 8.35,
+    "base_att": 94.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 94.0,
+        "risk": 5.8
+      },
+      {
+        "delta": 5,
+        "new_val": 99.0,
+        "risk": 15.3
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 17.6
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 17.6
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 17.6
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.35,
+        "risk": 5.8
+      },
+      {
+        "delta": 0.5,
+        "new_val": 8.85,
+        "risk": 4.8
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.35,
+        "risk": 5.3
+      },
+      {
+        "delta": 1.5,
+        "new_val": 9.85,
+        "risk": 8.0
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 8.0
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 8.0
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 5.8,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.35,
+      "delta_att": 0,
+      "new_att": 94.0
+    }
+  },
+  "60": {
+    "base_risk": 6.5,
+    "base_gpa": 8.15,
+    "base_att": 96.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 96.0,
+        "risk": 6.5
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 18.5
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 18.5
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 18.5
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 18.5
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.15,
+        "risk": 6.5
+      },
+      {
+        "delta": 0.5,
+        "new_val": 8.65,
+        "risk": 4.3
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.15,
+        "risk": 5.2
+      },
+      {
+        "delta": 1.5,
+        "new_val": 9.65,
+        "risk": 6.6
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 6.6
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 6.6
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 6.5,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.15,
+      "delta_att": 0,
+      "new_att": 96.0
+    }
+  },
+  "14": {
+    "base_risk": 5.4,
+    "base_gpa": 8.74,
+    "base_att": 99.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 99.0,
+        "risk": 5.4
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 8.5
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 8.5
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 8.5
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 8.5
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.74,
+        "risk": 5.4
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.24,
+        "risk": 8.9
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.74,
+        "risk": 12.8
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 12.8
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 12.8
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 12.8
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 5.4,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.74,
+      "delta_att": 0,
+      "new_att": 99.0
+    }
+  },
+  "52": {
+    "base_risk": 11.1,
+    "base_gpa": 8.58,
+    "base_att": 97.0,
+    "base_rep": 0,
+    "att_curve": [
+      {
+        "delta": 0,
+        "new_val": 97.0,
+        "risk": 11.1
+      },
+      {
+        "delta": 5,
+        "new_val": 100.0,
+        "risk": 21.2
+      },
+      {
+        "delta": 10,
+        "new_val": 100.0,
+        "risk": 21.2
+      },
+      {
+        "delta": 15,
+        "new_val": 100.0,
+        "risk": 21.2
+      },
+      {
+        "delta": 20,
+        "new_val": 100.0,
+        "risk": 21.2
+      }
+    ],
+    "gpa_curve": [
+      {
+        "delta": 0.0,
+        "new_val": 8.58,
+        "risk": 11.1
+      },
+      {
+        "delta": 0.5,
+        "new_val": 9.08,
+        "risk": 13.5
+      },
+      {
+        "delta": 1.0,
+        "new_val": 9.58,
+        "risk": 14.5
+      },
+      {
+        "delta": 1.5,
+        "new_val": 10.0,
+        "risk": 14.5
+      },
+      {
+        "delta": 2.0,
+        "new_val": 10.0,
+        "risk": 14.5
+      },
+      {
+        "delta": 3.0,
+        "new_val": 10.0,
+        "risk": 14.5
+      }
+    ],
+    "safe_counterfactual": {
+      "target_risk": 11.1,
+      "delta_gpa": 0.0,
+      "new_gpa": 8.58,
+      "delta_att": 0,
+      "new_att": 97.0
+    }
+  }
+}

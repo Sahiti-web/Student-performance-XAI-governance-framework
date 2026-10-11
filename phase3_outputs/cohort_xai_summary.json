@@ -1,0 +1,8 @@
+{
+  "gender": {
+    "female_count": 441,
+    "male_count": 359,
+    "female_avg_shap_ira": 0.26856613068813057,
+    "male_avg_shap_ira": 0.2755867472611183
+  }
+}
