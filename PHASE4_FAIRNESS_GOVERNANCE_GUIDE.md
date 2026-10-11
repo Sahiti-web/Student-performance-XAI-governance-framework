@@ -78,6 +78,15 @@ To run the automated algorithmic fairness audit:
 python phase4_fairness_audit_pipeline.py
 ```
 *Outputs generated in `phase4_outputs/`:*
-* `fairness_metrics_summary.csv`: Tabular audit of Disparate Impact, Demographic Parity, and Equal Opportunity across all protected groups.
-* `01_fairness_disparate_impact_chart.png`: Visual bar chart comparing demographic groups against the 80% fairness threshold.
-* `02_equal_opportunity_recall_parity.png`: Sensitivity parity across demographic slices.
+* `fairness_metrics_summary.csv`: Single-dimension quantitative audit across Gender, Race, Income, Age, and Digital Access.
+* `intersectional_fairness_summary.csv`: Empirical 8-group matrix auditing compound intersectional slices across Gender × Race × Income.
+* `early_warning_vs_postmortem_audit.csv`: Validation on active enrolled students (`GPA > 0`, 80.8% Recall) vs. administrative records (`GPA == 0`).
+* `modality_disaggregated_audit.csv`: Disaggregated performance across course modalities (High School Teens vs. Adult Programs).
+* `threshold_optimization_audit.csv`: Recalibration sensitivity across decision thresholds [0.30 to 0.70].
+* `01_comprehensive_fairness_audit.png`: 300 DPI publication-grade multi-panel audit visualization.
+
+To generate and launch the unified command center:
+```bash
+python build_unified_portal.py
+```
+*Outputs: `unified_governance_portal.html` (interactive 5-tab dashboard).*
