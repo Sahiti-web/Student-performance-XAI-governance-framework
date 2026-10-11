@@ -1,0 +1,33 @@
+anoingresso
+periodoingresso
+rendabruta
+ira
+modalidade
+idade
+ficou_tempo_sem_estudar
+quantidade_computadores
+exclusivo_rede_publica
+companhia_domiciliar
+mae_nivel_escolaridade
+pai_nivel_escolaridade
+quantidade_notebooks
+qtd_filhos
+tipo_area_residencial
+trabalha
+percentual_frequencia
+reprovacoes
+idioma
+genero_F
+genero_M
+raca_Amarela
+raca_Branca
+raca_Indígena
+raca_Não declarado
+raca_Parda
+raca_Preta
+estado_civil_Casado(a)
+estado_civil_Divorciado(a)
+estado_civil_Não declarado
+estado_civil_Solteiro(a)
+estado_civil_União Estável
+estado_civil_Viúvo(a)
