@@ -1,0 +1,1154 @@
+[
+  {
+    "id": 0,
+    "prob": 99.4,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2019.0,
+      "Family Gross Income": 0.0,
+      "Academic Performance (GPA / IRA)": 1.89,
+      "Course Modality": 3.0,
+      "Student Age": 21.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 6.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 4.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 77.0,
+      "Course Failures (Count)": 8.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2019.0,
+      "rendabruta": 0.0,
+      "ira": 1.89,
+      "modalidade": 3.0,
+      "idade": 21.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 6.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 4.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 77.0,
+      "reprovacoes": 8.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 1.89,
+        "shap": 0.2831,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 8.0,
+        "shap": 0.1134,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 77.0,
+        "shap": 0.0562,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": 0.0235,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2019.0,
+        "shap": 0.0158,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 0.0,
+        "shap": 0.0106,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "prob": 100.0,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 800.0,
+      "Academic Performance (GPA / IRA)": 0.63,
+      "Course Modality": 3.0,
+      "Student Age": 26.0,
+      "Household Companionship": 3.0,
+      "Mother's Education Level": 8.0,
+      "Father's Education Level": 8.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 3.0,
+      "Attendance Rate (%)": 71.0,
+      "Course Failures (Count)": 7.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 800.0,
+      "ira": 0.63,
+      "modalidade": 3.0,
+      "idade": 26.0,
+      "companhia_domiciliar": 3.0,
+      "mae_nivel_escolaridade": 8.0,
+      "pai_nivel_escolaridade": 8.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 3.0,
+      "percentual_frequencia": 71.0,
+      "reprovacoes": 7.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 0.63,
+        "shap": 0.2672,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 7.0,
+        "shap": 0.1181,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 71.0,
+        "shap": 0.0612,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": 0.0301,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 26.0,
+        "shap": 0.0157,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2018.0,
+        "shap": 0.0089,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      },
+      {
+        "urgency": "Immediate",
+        "title": "Attendance Outreach",
+        "text": "Social welfare officer outreach to investigate transportation barriers."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "prob": 96.5,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 938.0,
+      "Academic Performance (GPA / IRA)": 3.66,
+      "Course Modality": 0.0,
+      "Student Age": 21.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 88.0,
+      "Course Failures (Count)": 5.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 938.0,
+      "ira": 3.66,
+      "modalidade": 0.0,
+      "idade": 21.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 88.0,
+      "reprovacoes": 5.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 3.66,
+        "shap": 0.3358,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 5.0,
+        "shap": 0.0838,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 88.0,
+        "shap": 0.0357,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Father's Education Level",
+        "feature_orig": "pai_nivel_escolaridade",
+        "value": 7.0,
+        "shap": -0.008,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 21.0,
+        "shap": 0.0065,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2018.0,
+        "shap": 0.0053,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "prob": 50.1,
+    "pred": "Dropout",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2017.0,
+      "Family Gross Income": 1600.0,
+      "Academic Performance (GPA / IRA)": 7.12,
+      "Course Modality": 3.0,
+      "Student Age": 23.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 6.0,
+      "Attendance Rate (%)": 87.0,
+      "Course Failures (Count)": 1.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2017.0,
+      "rendabruta": 1600.0,
+      "ira": 7.12,
+      "modalidade": 3.0,
+      "idade": 23.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 6.0,
+      "percentual_frequencia": 87.0,
+      "reprovacoes": 1.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 87.0,
+        "shap": 0.0746,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2017.0,
+        "shap": -0.0318,
+        "direction": "protective"
+      },
+      {
+        "feature": "Father's Education Level",
+        "feature_orig": "pai_nivel_escolaridade",
+        "value": 7.0,
+        "shap": -0.0263,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": 0.0235,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 1.0,
+        "shap": -0.0224,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 1600.0,
+        "shap": -0.0177,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Critical",
+        "title": "Course Retake Plan",
+        "text": "Academic advising consultation; adjust semester study load."
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "prob": 2.8,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 1000.0,
+      "Academic Performance (GPA / IRA)": 8.75,
+      "Course Modality": 1.0,
+      "Student Age": 19.0,
+      "Household Companionship": 4.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 4.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 96.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 0.0,
+      "Gender: Male": 1.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 1000.0,
+      "ira": 8.75,
+      "modalidade": 1.0,
+      "idade": 19.0,
+      "companhia_domiciliar": 4.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 4.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 96.0,
+      "reprovacoes": 0.0,
+      "genero_F": 0.0,
+      "genero_M": 1.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.75,
+        "shap": -0.3227,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0504,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 96.0,
+        "shap": -0.045,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0253,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 19.0,
+        "shap": -0.0153,
+        "direction": "protective"
+      },
+      {
+        "feature": "Household Companionship",
+        "feature_orig": "companhia_domiciliar",
+        "value": 4.0,
+        "shap": -0.0103,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "prob": 89.2,
+    "pred": "Dropout",
+    "actual": "Dropout",
+    "features_en": {
+      "Enrollment Year": 2016.0,
+      "Family Gross Income": 930.0,
+      "Academic Performance (GPA / IRA)": 4.82,
+      "Course Modality": 1.0,
+      "Student Age": 22.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 7.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 4.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 100.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2016.0,
+      "rendabruta": 930.0,
+      "ira": 4.82,
+      "modalidade": 1.0,
+      "idade": 22.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 7.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 4.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 100.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 4.82,
+        "shap": 0.5039,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0461,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2016.0,
+        "shap": -0.0391,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0216,
+        "direction": "protective"
+      },
+      {
+        "feature": "Laptops at Home",
+        "feature_orig": "quantidade_notebooks",
+        "value": 1.0,
+        "shap": -0.0108,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 100.0,
+        "shap": 0.0091,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Academic Remediation",
+        "text": "Mandatory peer-tutoring and foundations workshop."
+      },
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      }
+    ]
+  },
+  {
+    "id": 312,
+    "prob": 9.7,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 1000.0,
+      "Academic Performance (GPA / IRA)": 9.36,
+      "Course Modality": 3.0,
+      "Student Age": 29.0,
+      "Household Companionship": 3.0,
+      "Mother's Education Level": 5.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 97.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 1000.0,
+      "ira": 9.36,
+      "modalidade": 3.0,
+      "idade": 29.0,
+      "companhia_domiciliar": 3.0,
+      "mae_nivel_escolaridade": 5.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 97.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 9.36,
+        "shap": -0.3099,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 97.0,
+        "shap": -0.0646,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0638,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 29.0,
+        "shap": 0.0361,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Laptops at Home",
+        "feature_orig": "quantidade_notebooks",
+        "value": 1.0,
+        "shap": -0.0084,
+        "direction": "protective"
+      },
+      {
+        "feature": "Mother's Education Level",
+        "feature_orig": "mae_nivel_escolaridade",
+        "value": 5.0,
+        "shap": 0.008,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Standard",
+        "title": "Normal Progress Tracking",
+        "text": "Maintain bi-monthly check-ins; potential peer-tutor candidate."
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "prob": 3.4,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2018.0,
+      "Family Gross Income": 600.0,
+      "Academic Performance (GPA / IRA)": 9.18,
+      "Course Modality": 1.0,
+      "Student Age": 20.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 5.0,
+      "Father's Education Level": 4.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 98.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2018.0,
+      "rendabruta": 600.0,
+      "ira": 9.18,
+      "modalidade": 1.0,
+      "idade": 20.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 5.0,
+      "pai_nivel_escolaridade": 4.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 98.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 9.18,
+        "shap": -0.3065,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0537,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 98.0,
+        "shap": -0.0443,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0244,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 20.0,
+        "shap": -0.0125,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 600.0,
+        "shap": -0.0087,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "prob": 5.8,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2017.0,
+      "Family Gross Income": 500.0,
+      "Academic Performance (GPA / IRA)": 8.35,
+      "Course Modality": 3.0,
+      "Student Age": 29.0,
+      "Household Companionship": 3.0,
+      "Mother's Education Level": 4.0,
+      "Father's Education Level": 0.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 6.0,
+      "Attendance Rate (%)": 94.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2017.0,
+      "rendabruta": 500.0,
+      "ira": 8.35,
+      "modalidade": 3.0,
+      "idade": 29.0,
+      "companhia_domiciliar": 3.0,
+      "mae_nivel_escolaridade": 4.0,
+      "pai_nivel_escolaridade": 0.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 6.0,
+      "percentual_frequencia": 94.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.35,
+        "shap": -0.3237,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0704,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 94.0,
+        "shap": -0.0668,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2017.0,
+        "shap": -0.0281,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 29.0,
+        "shap": 0.0247,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Employment Status",
+        "feature_orig": "trabalha",
+        "value": 6.0,
+        "shap": 0.0103,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      },
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "prob": 6.5,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2019.0,
+      "Family Gross Income": 687.0,
+      "Academic Performance (GPA / IRA)": 8.15,
+      "Course Modality": 1.0,
+      "Student Age": 18.0,
+      "Household Companionship": 7.0,
+      "Mother's Education Level": 5.0,
+      "Father's Education Level": 4.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 4.0,
+      "Attendance Rate (%)": 96.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2019.0,
+      "rendabruta": 687.0,
+      "ira": 8.15,
+      "modalidade": 1.0,
+      "idade": 18.0,
+      "companhia_domiciliar": 7.0,
+      "mae_nivel_escolaridade": 5.0,
+      "pai_nivel_escolaridade": 4.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 4.0,
+      "percentual_frequencia": 96.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.15,
+        "shap": -0.2889,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0517,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 96.0,
+        "shap": -0.0506,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0218,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 687.0,
+        "shap": -0.0143,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 18.0,
+        "shap": 0.0081,
+        "direction": "increases_risk"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Moderate",
+        "title": "Financial Aid Priority",
+        "text": "Expedited eligibility check for transport grants and meal stipends."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "prob": 5.4,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2017.0,
+      "Family Gross Income": 2000.0,
+      "Academic Performance (GPA / IRA)": 8.74,
+      "Course Modality": 1.0,
+      "Student Age": 19.0,
+      "Household Companionship": 8.0,
+      "Mother's Education Level": 9.0,
+      "Father's Education Level": 7.0,
+      "Laptops at Home": 1.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 5.0,
+      "Attendance Rate (%)": 99.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2017.0,
+      "rendabruta": 2000.0,
+      "ira": 8.74,
+      "modalidade": 1.0,
+      "idade": 19.0,
+      "companhia_domiciliar": 8.0,
+      "mae_nivel_escolaridade": 9.0,
+      "pai_nivel_escolaridade": 7.0,
+      "quantidade_notebooks": 1.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 5.0,
+      "percentual_frequencia": 99.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.74,
+        "shap": -0.2613,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0558,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 1.0,
+        "shap": -0.0276,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2017.0,
+        "shap": -0.0244,
+        "direction": "protective"
+      },
+      {
+        "feature": "Family Gross Income",
+        "feature_orig": "rendabruta",
+        "value": 2000.0,
+        "shap": -0.0159,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 19.0,
+        "shap": -0.0138,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "Standard",
+        "title": "Normal Progress Tracking",
+        "text": "Maintain bi-monthly check-ins; potential peer-tutor candidate."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "prob": 11.1,
+    "pred": "Completed",
+    "actual": "Completed",
+    "features_en": {
+      "Enrollment Year": 2020.0,
+      "Family Gross Income": 2400.0,
+      "Academic Performance (GPA / IRA)": 8.58,
+      "Course Modality": 3.0,
+      "Student Age": 28.0,
+      "Household Companionship": 4.0,
+      "Mother's Education Level": 9.0,
+      "Father's Education Level": 0.0,
+      "Laptops at Home": 0.0,
+      "Residential Area (Urban/Rural)": 5.0,
+      "Employment Status": 6.0,
+      "Attendance Rate (%)": 97.0,
+      "Course Failures (Count)": 0.0,
+      "Gender: Female": 1.0,
+      "Gender: Male": 0.0
+    },
+    "features_raw": {
+      "anoingresso": 2020.0,
+      "rendabruta": 2400.0,
+      "ira": 8.58,
+      "modalidade": 3.0,
+      "idade": 28.0,
+      "companhia_domiciliar": 4.0,
+      "mae_nivel_escolaridade": 9.0,
+      "pai_nivel_escolaridade": 0.0,
+      "quantidade_notebooks": 0.0,
+      "tipo_area_residencial": 5.0,
+      "trabalha": 6.0,
+      "percentual_frequencia": 97.0,
+      "reprovacoes": 0.0,
+      "genero_F": 1.0,
+      "genero_M": 0.0
+    },
+    "drivers": [
+      {
+        "feature": "Academic Performance (GPA / IRA)",
+        "feature_orig": "ira",
+        "value": 8.58,
+        "shap": -0.3086,
+        "direction": "protective"
+      },
+      {
+        "feature": "Enrollment Year",
+        "feature_orig": "anoingresso",
+        "value": 2020.0,
+        "shap": 0.1278,
+        "direction": "increases_risk"
+      },
+      {
+        "feature": "Course Failures (Count)",
+        "feature_orig": "reprovacoes",
+        "value": 0.0,
+        "shap": -0.0746,
+        "direction": "protective"
+      },
+      {
+        "feature": "Course Modality",
+        "feature_orig": "modalidade",
+        "value": 3.0,
+        "shap": -0.0555,
+        "direction": "protective"
+      },
+      {
+        "feature": "Attendance Rate (%)",
+        "feature_orig": "percentual_frequencia",
+        "value": 97.0,
+        "shap": -0.0536,
+        "direction": "protective"
+      },
+      {
+        "feature": "Student Age",
+        "feature_orig": "idade",
+        "value": 28.0,
+        "shap": -0.012,
+        "direction": "protective"
+      }
+    ],
+    "interventions": [
+      {
+        "urgency": "High",
+        "title": "Digital Inclusion Loan",
+        "text": "Issue institutional loaner laptop and campus lab card."
+      }
+    ]
+  }
+]

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 3 XAI Dashboard | Explainable AI Governance</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --success: #0e9f6e;
+            --warning: #d97706;
+            --danger: #e02424;
+            --dark: #111827;
+            --light-bg: #f9fafb;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+        }
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.5;
+            padding: 24px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+        header p { font-size: 14px; opacity: 0.9; max-width: 850px; }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 25px;
+        }
+        .kpi-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--primary);
+        }
+        .kpi-title { font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 600; margin-bottom: 6px; }
+        .kpi-value { font-size: 28px; font-weight: 800; }
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .section-card h2 { font-size: 19px; font-weight: 700; margin-bottom: 16px; color: #1e293b; }
+        table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        th { background: #f8fafc; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+        .badge-danger { background: #fde8e8; color: #9b1c1c; }
+        .badge-warning { background: #fef08a; color: #713f12; }
+        .badge-success { background: #def7ec; color: #03543f; }
+        .img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .archetype-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }
+        .archetype-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Phase 3: Explainable AI (XAI) & Institutional Guidance Dashboard</h1>
+            <p>Empirical feature attribution and personalized counseling intervention engine based on SHAP (TreeExplainer) and LIME applied to the champion Random Forest model.</p>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">Champion Model</div>
+                <div class="kpi-value" style="color:var(--primary); font-size:22px;">Random Forest</div>
+                <div style="font-size:12px; color:#6b7280;">Tuned UnderSampling (Phase 2)</div>
+            </div>
+            <div class="kpi-card" style="border-top-color:var(--danger);">
+                <div class="kpi-title">#1 Global Driver</div>
+                <div class="kpi-value" style="color:var(--danger); font-size:22px;">GPA (<code>ira</code>)</div>
+                <div style="font-size:12px; color:#6b7280;">Mean |SHAP| = 0.2717</div>
+            </div>
+            <div class="kpi-card" style="border-top-color:var(--warning);">
+                <div class="kpi-title">#2 Global Driver</div>
+                <div class="kpi-value" style="color:var(--warning); font-size:22px;">Failures (<code>reprovacoes</code>)</div>
+                <div style="font-size:12px; color:#6b7280;">Mean |SHAP| = 0.0596</div>
+            </div>
+            <div class="kpi-card" style="border-top-color:var(--success);">
+                <div class="kpi-title">Audit Cohort</div>
+                <div class="kpi-value" style="color:var(--success);">800</div>
+                <div style="font-size:12px; color:#6b7280;">Representative Students Analyzed</div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>1. Global Model Attributions (Macro Interpretability)</h2>
+            <div class="img-grid">
+                <div>
+                    <img src="01_shap_global_beeswarm.png" alt="SHAP Beeswarm" style="width:100%; border-radius:8px; border:1px solid #e5e7eb;">
+                    <p style="font-size:13px; color:#6b7280; margin-top:8px;">
+                        <strong>SHAP Beeswarm Plot:</strong> Each point is a student. Red = high feature value, Blue = low value. Low IRA (blue) strongly pulls predictions toward dropout (+SHAP).
+                    </p>
+                </div>
+                <div>
+                    <img src="02_shap_feature_importance.png" alt="SHAP Importance" style="width:100%; border-radius:8px; border:1px solid #e5e7eb;">
+                    <p style="font-size:13px; color:#6b7280; margin-top:8px;">
+                        <strong>Mean Absolute SHAP Bar Plot:</strong> Quantifies the absolute average impact on dropout probability across all features.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>2. Global Feature Ranking Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:80px;">Rank</th>
+                        <th>Feature Name</th>
+                        <th style="width:180px;">Mean |SHAP Value|</th>
+                        <th style="width:300px;">Relative Weight</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td><strong>#1</strong></td>
+            <td><code>ira</code></td>
+            <td><strong>0.2717</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:100.0%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#2</strong></td>
+            <td><code>reprovacoes</code></td>
+            <td><strong>0.0596</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:21.9%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#3</strong></td>
+            <td><code>anoingresso</code></td>
+            <td><strong>0.0415</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:15.3%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#4</strong></td>
+            <td><code>percentual_frequencia</code></td>
+            <td><strong>0.0305</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:11.2%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#5</strong></td>
+            <td><code>modalidade</code></td>
+            <td><strong>0.0263</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:9.7%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#6</strong></td>
+            <td><code>idade</code></td>
+            <td><strong>0.0174</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:6.4%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#7</strong></td>
+            <td><code>rendabruta</code></td>
+            <td><strong>0.0127</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:4.7%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#8</strong></td>
+            <td><code>trabalha</code></td>
+            <td><strong>0.0084</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:3.1%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#9</strong></td>
+            <td><code>mae_nivel_escolaridade</code></td>
+            <td><strong>0.0073</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:2.7%;"></div></div></td>
+        </tr>
+        
+        <tr>
+            <td><strong>#10</strong></td>
+            <td><code>companhia_domiciliar</code></td>
+            <td><strong>0.0067</strong></td>
+            <td><div style="background:#e5e7eb; border-radius:4px; height:12px; width:100%;"><div style="background:#1a56db; height:12px; border-radius:4px; width:2.4%;"></div></div></td>
+        </tr>
+        
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-card">
+            <h2>3. Local Student-Level Interpretability & Prescriptive Interventions</h2>
+            <p style="color:#6b7280; font-size:14px; margin-bottom:18px;">
+                Detailed audit of three archetypal student profiles demonstrating the transition from predictive risk scores to actionable institutional guidance.
+            </p>
+            <div class="archetype-grid">
+                
+        <div class="archetype-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h3 style="margin:0; font-size:18px;">Student #0 — High-Risk Student</h3>
+                <span class="badge badge-danger" style="font-size:14px;">Dropout Risk: 99.4%</span>
+            </div>
+            <p style="color:#6b7280; font-size:13px; margin-bottom:14px;">
+                Ground Truth: <strong>Dropped Out</strong> | Model Decision: <strong>Dropped Out</strong>
+            </p>
+            
+            <div style="margin-bottom:15px;">
+                <img src="04_shap_high_risk_student_0.png" alt="SHAP Waterfall" style="width:100%; border-radius:8px; border:1px solid #e5e7eb;">
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:15px; font-size:13px;">
+                <div style="background:#fef2f2; padding:10px; border-radius:6px; border:1px solid #fee2e2;">
+                    <strong style="color:#991b1b;">Top Risk Aggravators (+):</strong>
+                    <ul style="margin:6px 0 0 16px; padding:0;"><li><code>ira</code> = 1.89 <span style='color:#e02424; font-weight:600;'>(+0.2831)</span></li><li><code>reprovacoes</code> = 8.0 <span style='color:#e02424; font-weight:600;'>(+0.1134)</span></li><li><code>percentual_frequencia</code> = 77.0 <span style='color:#e02424; font-weight:600;'>(+0.0562)</span></li><li><code>modalidade</code> = 3.0 <span style='color:#e02424; font-weight:600;'>(+0.0235)</span></li></ul>
+                </div>
+                <div style="background:#f0fdf4; padding:10px; border-radius:6px; border:1px solid #dcfce7;">
+                    <strong style="color:#166534;">Top Protective Buffers (-):</strong>
+                    <ul style="margin:6px 0 0 16px; padding:0;"><li>None</li></ul>
+                </div>
+            </div>
+
+            <div style="background:#f9fafb; padding:12px; border-radius:6px; border:1px solid #e5e7eb; margin-bottom:12px;">
+                <strong style="font-size:14px; color:#1f2937;">Prescribed Counselor Interventions:</strong>
+                <ul style="margin:8px 0 0 18px; padding:0;">
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-warning">High</span>
+                    <strong>Academic Performance Index (IRA)</strong> (Val: 1.89)<br>
+                    <span style="color:#4b5563; font-size:13px;">Assign mandatory peer-tutoring, remedial workshops in foundation courses, and bi-weekly mentor check-ins.</span>
+                </li>
+                
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-danger">Critical</span>
+                    <strong>Course Failures (Reprovações)</strong> (Val: 8.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Urgent academic advising consultation; adjust semester course load and map out recovery study plan.</span>
+                </li>
+                
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-warning">Moderate</span>
+                    <strong>Household Gross Income</strong> (Val: 0.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Expedited screening for institutional student financial aid, food subsidies, and transportation grants.</span>
+                </li>
+                
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-warning">High</span>
+                    <strong>Home Laptop Access</strong> (Val: 0.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Issue institutional loaner laptop and ensure access to campus computer labs and digital library resources.</span>
+                </li>
+                
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-warning">Low</span>
+                    <strong>Non-traditional Student Age</strong> (Val: 21.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Connect with adult-learner peer support networks and evening study groups.</span>
+                </li>
+                </ul>
+            </div>
+
+            <a href="05_lime_high_risk_student_0.html" target="_blank" style="display:inline-block; font-size:13px; color:#1a56db; font-weight:600; text-decoration:none;">
+                🔍 View Full Interactive LIME Report &rarr;
+            </a>
+        </div>
+        
+        <div class="archetype-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h3 style="margin:0; font-size:18px;">Student #37 — Borderline / At-Risk Student</h3>
+                <span class="badge badge-warning" style="font-size:14px;">Dropout Risk: 50.1%</span>
+            </div>
+            <p style="color:#6b7280; font-size:13px; margin-bottom:14px;">
+                Ground Truth: <strong>Completed</strong> | Model Decision: <strong>Dropped Out</strong>
+            </p>
+            
+            <div style="margin-bottom:15px;">
+                <img src="04_shap_borderline_student_37.png" alt="SHAP Waterfall" style="width:100%; border-radius:8px; border:1px solid #e5e7eb;">
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:15px; font-size:13px;">
+                <div style="background:#fef2f2; padding:10px; border-radius:6px; border:1px solid #fee2e2;">
+                    <strong style="color:#991b1b;">Top Risk Aggravators (+):</strong>
+                    <ul style="margin:6px 0 0 16px; padding:0;"><li><code>percentual_frequencia</code> = 87.0 <span style='color:#e02424; font-weight:600;'>(+0.0746)</span></li><li><code>modalidade</code> = 3.0 <span style='color:#e02424; font-weight:600;'>(+0.0235)</span></li></ul>
+                </div>
+                <div style="background:#f0fdf4; padding:10px; border-radius:6px; border:1px solid #dcfce7;">
+                    <strong style="color:#166534;">Top Protective Buffers (-):</strong>
+                    <ul style="margin:6px 0 0 16px; padding:0;"><li><code>anoingresso</code> = 2017.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0318)</span></li><li><code>pai_nivel_escolaridade</code> = 7.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0263)</span></li><li><code>reprovacoes</code> = 1.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0224)</span></li><li><code>rendabruta</code> = 1600.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0177)</span></li></ul>
+                </div>
+            </div>
+
+            <div style="background:#f9fafb; padding:12px; border-radius:6px; border:1px solid #e5e7eb; margin-bottom:12px;">
+                <strong style="font-size:14px; color:#1f2937;">Prescribed Counselor Interventions:</strong>
+                <ul style="margin:8px 0 0 18px; padding:0;">
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-danger">Critical</span>
+                    <strong>Course Failures (Reprovações)</strong> (Val: 1.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Urgent academic advising consultation; adjust semester course load and map out recovery study plan.</span>
+                </li>
+                
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-warning">Low</span>
+                    <strong>Non-traditional Student Age</strong> (Val: 23.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Connect with adult-learner peer support networks and evening study groups.</span>
+                </li>
+                </ul>
+            </div>
+
+            <a href="05_lime_borderline_student_37.html" target="_blank" style="display:inline-block; font-size:13px; color:#1a56db; font-weight:600; text-decoration:none;">
+                🔍 View Full Interactive LIME Report &rarr;
+            </a>
+        </div>
+        
+        <div class="archetype-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h3 style="margin:0; font-size:18px;">Student #1 — Low-Risk / Resilient Student</h3>
+                <span class="badge badge-success" style="font-size:14px;">Dropout Risk: 3.4%</span>
+            </div>
+            <p style="color:#6b7280; font-size:13px; margin-bottom:14px;">
+                Ground Truth: <strong>Completed</strong> | Model Decision: <strong>Completed</strong>
+            </p>
+            
+            <div style="margin-bottom:15px;">
+                <img src="04_shap_low_risk_student_1.png" alt="SHAP Waterfall" style="width:100%; border-radius:8px; border:1px solid #e5e7eb;">
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:15px; font-size:13px;">
+                <div style="background:#fef2f2; padding:10px; border-radius:6px; border:1px solid #fee2e2;">
+                    <strong style="color:#991b1b;">Top Risk Aggravators (+):</strong>
+                    <ul style="margin:6px 0 0 16px; padding:0;"><li><code>pai_nivel_escolaridade</code> = 4.0 <span style='color:#e02424; font-weight:600;'>(+0.0070)</span></li></ul>
+                </div>
+                <div style="background:#f0fdf4; padding:10px; border-radius:6px; border:1px solid #dcfce7;">
+                    <strong style="color:#166534;">Top Protective Buffers (-):</strong>
+                    <ul style="margin:6px 0 0 16px; padding:0;"><li><code>ira</code> = 9.18 <span style='color:#0e9f6e; font-weight:600;'>(-0.3065)</span></li><li><code>reprovacoes</code> = 0.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0537)</span></li><li><code>percentual_frequencia</code> = 98.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0443)</span></li><li><code>modalidade</code> = 1.0 <span style='color:#0e9f6e; font-weight:600;'>(-0.0244)</span></li></ul>
+                </div>
+            </div>
+
+            <div style="background:#f9fafb; padding:12px; border-radius:6px; border:1px solid #e5e7eb; margin-bottom:12px;">
+                <strong style="font-size:14px; color:#1f2937;">Prescribed Counselor Interventions:</strong>
+                <ul style="margin:8px 0 0 18px; padding:0;">
+                <li style="margin-bottom:8px;">
+                    <span class="badge badge-warning">Moderate</span>
+                    <strong>Household Gross Income</strong> (Val: 600.0)<br>
+                    <span style="color:#4b5563; font-size:13px;">Expedited screening for institutional student financial aid, food subsidies, and transportation grants.</span>
+                </li>
+                </ul>
+            </div>
+
+            <a href="05_lime_low_risk_student_1.html" target="_blank" style="display:inline-block; font-size:13px; color:#1a56db; font-weight:600; text-decoration:none;">
+                🔍 View Full Interactive LIME Report &rarr;
+            </a>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+</body>
+</html>

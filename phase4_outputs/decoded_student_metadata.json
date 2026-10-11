@@ -1,0 +1,86 @@
+{
+  "0": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Rural Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "43": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Empresa privada",
+    "gender_en": "Male",
+    "race_en": "Parda"
+  },
+  "85": {
+    "modality_en": "Concomitante High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Male",
+    "race_en": "Parda"
+  },
+  "37": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Currently Not Working",
+    "gender_en": "Male",
+    "race_en": "Parda"
+  },
+  "102": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Male",
+    "race_en": "Preta"
+  },
+  "185": {
+    "modality_en": "Integrado High School",
+    "area_en": "Rural Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "312": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Branca"
+  },
+  "1": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "25": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Currently Not Working",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "60": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Est\u00e1gio ou bolsa",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "14": {
+    "modality_en": "Integrado High School",
+    "area_en": "Urban Area",
+    "work_en": "Never Worked",
+    "gender_en": "Female",
+    "race_en": "Parda"
+  },
+  "52": {
+    "modality_en": "Subsequente High School",
+    "area_en": "Urban Area",
+    "work_en": "Currently Not Working",
+    "gender_en": "Female",
+    "race_en": "Preta"
+  }
+}
